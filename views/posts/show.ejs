@@ -1,0 +1,15 @@
+<h1><%= post.title %></h1>
+<div> Price: <%= post.price%></div>
+<div> <%= post.description%> </div>
+<div> <%= post.location %> </div>
+<div>
+    <% post.images.forEach(image=>{%>
+        <img src="<%= image.url %>" alt="surf-board" width="200px" height="200px">
+    <%})%>
+</div>
+<div><a href="/posts/<%= post.id %>/edit"><button>Edit</button></a></div>
+<div>
+    <form action="/posts/<%= post.id %>?_method=DELETE" method="post">
+        <input type="submit" value="DELETE">
+    </form>
+</div>
