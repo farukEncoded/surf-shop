@@ -55,8 +55,12 @@ passport.deserializeUser(User.deserializeUser());
 
 //set local variables middleware
 app.use((req, res, next)=>{
+  req.user = {
+    "_id" : "5e762fe4d47cf12f8022b1e2",
+    "username" : "faruk"
+  }
+  res.locals.currentUser = req.user;
   res.locals.title = 'Surf Shop';
-  
   res.locals.success = req.session.success || '';
   delete req.session.success;
 
@@ -72,9 +76,9 @@ app.use('/posts', postsRouter);
 app.use('/posts/:id/reviews', reviewsRouter);
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
-  next(createError(404));
-});
+// app.use(function(req, res, next) {
+//   next(createError(404));
+// });
 
 // error handler
 app.use(function(err, req, res, next) {
